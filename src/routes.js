@@ -6,7 +6,7 @@ import auth from "./middlewares/auth";
 
 const routes = new Router();
 //criação de sessao
-routes.put('sessions', SessionController.create);
+routes.post('/sessions', SessionController.create);
 //rotas de usuarios publicos
 routes.get('/users', LoginController.index);
 routes.get('/users/:id', LoginController.show);
@@ -16,7 +16,7 @@ routes.post('/users',LoginController.create);
 routes.get('/developer', DeveloperController.index);
 routes.get('/developer/:id', DeveloperController.show);
 
-routes.use(auth)
+// routes.use(auth)
 
 
 // login de usuariosprivado
