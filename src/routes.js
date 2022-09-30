@@ -4,6 +4,7 @@ import DeveloperController from './controllers/developer-projects-controller'
 import SessionController from "./controllers/sessions-controller";
 import auth from "./middlewares/auth";
 
+
 const routes = new Router();
 //criação de sessao
 routes.post('/sessions', SessionController.create);
@@ -16,7 +17,7 @@ routes.post('/users',LoginController.create);
 routes.get('/developer', DeveloperController.index);
 routes.get('/developer/:id', DeveloperController.show);
 
-// routes.use(auth)
+ //routes.use(auth)
 
 
 // login de usuariosprivado

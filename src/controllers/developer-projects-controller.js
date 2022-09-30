@@ -36,7 +36,10 @@ class DeveloperController {
           .json({ mensage: `Project ${title} already exists.` });
 
       const newProject = await Developer.create({
-        ...req.body,
+        title,
+        image,
+        preview,
+        description,
       });
       return res.status(201).json(newProject);
     } catch (err) {
