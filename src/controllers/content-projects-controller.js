@@ -1,9 +1,10 @@
-import Developer from "../models/developer";
+import Content from "../models/content";
 
-class DeveloperController {
+class ContentController {
+  
   async index(req, res) {
     try {
-      const projects = await Developer.find();
+      const projects = await Content.find();
       return res.json(projects);
     } catch (err) {
       console.error(err);
@@ -14,7 +15,7 @@ class DeveloperController {
   async show(req, res) {
     try {
       const { id } = req.params;
-      const project = await Developer.findById(id);
+      const project = await Content.findById(id);
 
       if (!project) return res.status(404).json();
 
@@ -29,13 +30,13 @@ class DeveloperController {
     try {
       const { title, image, preview, description } = req.body;
 
-      const project = await Developer.findOne({ title });
+      const project = await Content.findOne({ title });
       if (project)
         return res
           .status(422)
           .json({ mensage: `Project ${title} already exists.` });
 
-      const newProject = await Developer.create({
+      const newProject = await Content.create({
         title,
         image,
         preview,
@@ -51,7 +52,7 @@ class DeveloperController {
     try {
       const { id } = req.params;
       const { title, image, preview, description } = req.body;
-      const project = await Developer.findById(id);
+      const project = await Content.findById(id);
 
       if (!project) return res.status(404).json();
       await project.updateOne({ title, image, preview, description });
@@ -64,7 +65,7 @@ class DeveloperController {
   async destroy(req, res) {
     try {
       const { id } = req.params;
-      const project = await Developer.findById(id);
+      const project = await Content.findById(id);
 
       if (!project) return res.status(404).json();
 
@@ -76,5 +77,4 @@ class DeveloperController {
     }
   }
 }
-
-export default new DeveloperController();
+export default new ContentController();
